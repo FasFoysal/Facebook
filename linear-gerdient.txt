@@ -1,0 +1,213 @@
+php my admine
+
+https://www.youtube.com/watch?v=-uedAERodME&t=1886s
+https://www.youtube.com/watch?v=-uedAERodME&list=PLYnK4UMf4VuLQgwAm0kaDDb0rrPaeG7aW&index=56
+
+dashboard bananor por admin a php er sathea collect korar jono 
+
+***php te likte hoi:   
+
+$servername = "localhost:8080";
+$username = "root";
+$password = "";
+$dbname = "foysal";
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $sql = "INSERT INTO MyGuests (first_name, last_name, mobile_email, passwoed, birthday, p_pic,gender) VALUES (' $first_name ' ,   '$last_name  ' ,   '$last_name'  ,   '$passwoed '  ,  ' $birthday '  ,  '$p_pic '   ,  '$gender ' )";
+
+  $conn->exec($sql);
+  $last_id = $conn->lastInsertId();
+  echo "New record created successfully. Last inserted ID is: " . $last_id;
+} catch(PDOException $e) {
+  echo $sql . "<br>" . $e->getMessage();
+}
+$conn = null;
+
+link: https://www.w3schools.com/php/php_mysql_insert_lastid.asp
+
+*password hidden use ; echo $passwoed = $_POST["newpass"];  
+                       echo $passwoed = md5 ($_POST["newpass"]);  
+
+
+******************8now the real  final   screenshot phpadmin problem
+
+<?php
+$conn=mysqli_connect('localhost','root','','foysal')
+ $first_nam  =$_POST['fname'];
+ $last_nam = $_POST['tsure'];   
+ $mobile_emai = $_POST['mobile'];
+            $_POST['remobile'];
+ $passwoe= md5  ($_POST['newpass'])   ;   
+
+             $_POST['day'];
+             $_POST['month'];
+             $_POST['year'];
+ $birthda = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
+//mysqli_query($conn, "INSERT INTO user info
+ $p_pic = $_FILES ['ppp'] ['name'];
+                $ptmp_name = $_FILES ['ppp'] ['tmp_name'];
+              move_uploaded_file ($ptmp_name,'upload/'.$p_pic);
+ $gende = $_POST['same'];
+//mysqli_query ($conn, "INSERT INTO user_info 
+mysqli_query ($conn,"INSERT INTO user_id(first_name,last_name,mobile_email,passwoed,birthday,p_pi,gender) VALUES('$first_nam','$last_nam','$mobile_emai','$passwoe','$birthda','$p_pic','$gende')");
+
+
+
+* fill up all input ase   required  
+exampul ;  <input name="ppp" type="submit" value="create an account"  required>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$servername = "localhost:8080";
+$username = "root";
+$password = "";
+$dbname = "foysal";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $dbname);
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql ="INSERT INTO MyGuests (first_name, last_name, mobile_email, passwoed, birthday, p_pic,gender) VALUES (' $first_name ' ,   '$last_name  '  ,   '$passwoed '  ,  ' $birthday '  ,  '$p_pic '   ,  '$gender ' )";
+
+
+if (mysqli_query($conn, $sql)) {
+  $last_id = mysqli_insert_id($conn);
+  echo "New record created successfully. Last inserted ID is: " . $last_id;
+} else {
+  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+
+.....   
+* 2 ta email same hoile     php er 2 ta niom 
+1. if ($mobile_emai ==  $remobile_emai ){
+echo 'male is valid!'; }
+
+else{
+  echo 'male is not valid!'; 
+  $conn->close();
+}
+2. if ($mobile_emai == $remobile_emai) {
+    mysqli_query  ($conn,"INSERT INTO user_id(first_name,last_name,mobile_email,passwoed,birthday,p_pi,gender) VALUES('$first_nam','$last_nam','$mobile_emai','$passwoe','$birthda','$p_pic','$gende')");
+
+}else{
+  echo "email not same";
+}
+
+eita youtube er
+
+*& full php
+.....................
+<?php
+
+  // Database Connection 
+$conn = mysqli_connect('localhost','root','','foysal');
+
+
+
+//all valuse
+  $first_nam = $_POST['fname'];
+ $last_nam = $_POST['tsure'];   
+ $mobile_emai = $_POST['mobile'];
+      $remobile_emai =  $_POST['remobile'];
+
+
+ $passwoe =  $_POST['newpass'];
+     $checkpass = $_POST['newpass_check'];
+
+             $_POST['day'];
+             $_POST['month'];
+             $_POST['year'];
+ $birthda = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
+
+
+//mysqli_query($conn, "INSERT INTO user info   pictur
+
+ $p_pic = $_FILES ['ppp'] ['name'];
+                $ptmp_name = $_FILES ['ppp'] ['tmp_name'];
+              move_uploaded_file ($ptmp_name,'../upload/'.$p_pic);
+
+
+ $gende = $_POST['same'];
+
+
+
+
+
+
+// no:1 1ta email ekbar use kora jibo
+if ($passwoe == $checkpass) {
+
+  if ($mobile_emai == $remobile_emai) {
+
+//....................................................
+   // no:2 same email na houar jino you have a accunt
+$email_same = mysqli_query ($conn,"SELECT * FROM user_id WHERE mobile_email = '$mobile_emai' " );
+$email_num = mysqli_num_rows($email_same);
+ // no:2 same email na houar jino   you have a account
+ if($email_num >= 1 ) {
+
+  header("location:../index.php?result=alredy_account");
+   //  echo "Already you have a account"  ;
+   //close connection  very importent
+   mysqli_close($conn) ;
+  
+ }
+ else{
+  //no:3 same email na houar jino you have a password
+
+  ///if ($passwoe == $checkpass) {
+
+    // Sql Query
+//mysqli_query ($conn, "INSERT INTO user_info 
+  mysqli_query  ($conn,"INSERT INTO user_id(first_name,last_name,mobile_email,passwoed,birthday,p_pi,gender) VALUES('$first_nam','$last_nam','$mobile_emai','$passwoe','$birthda','$p_pic','$gende')");
+  //no:3 same email na houar jino you have a password
+//}else{
+  
+
+  //header("location:../index.php?result=passwoed_not_same");
+ // echo "email not same";
+  mysqli_close($conn) ;
+
+//}
+  header("location:../index.php?result=account_sucessfull");
+  mysqli_close($conn) ;
+ // no:2 same email na houar jino   you have a account
+ }
+
+}else{
+  
+  header("location:../index.php?result=email_not");
+ // echo "email not same";
+  mysqli_close($conn) ;
+}
+// no:1 1ta email ekbar use kora jibo 
+}else{
+  
+  header("location:../index.php?result=pass_not_same");
+ // echo "email not same";
+  mysqli_close($conn) ;
+}
+
+
+
